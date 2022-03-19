@@ -10,8 +10,13 @@ var donuts = [
     {id:4 , type: "Boston Cream", cost: 5.99 }
   ];
 
-
-
+app.put('/donuts/:id',(req,res)=>{
+    const donut = donuts.find(d=> d.id === parseInt(req.params.id));
+    if(!donut) return res.status(404).send("not found");
+    donut.type = req.body.name;
+    donut.cost = req.body.cost;
+    res.send(donut);
+});
 
 
 const port = process.env.PORT || 3000 ;
