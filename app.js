@@ -1,7 +1,4 @@
 
-
-
-
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -23,6 +20,9 @@ app.put('/donuts/:id',(req,res)=>{
     res.send(donut);
 });
 
+app.get('/donuts',(req,res)=>{
+  res.send(donuts);
+})
 
 app.post('/donuts',(req,res)=>{
   const donut={
@@ -52,3 +52,8 @@ app.put('/donuts/:id',(req,res)=>{
 
 const port = process.env.PORT || 3000 ;
 app.listen(port , ()=> {console.log(`Listen to port ${port}......`)});
+
+
+
+
+
