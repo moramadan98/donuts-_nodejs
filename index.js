@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const donut_router = require('./routes/donut_router');
 const app = express();
-
+require('./prod')(app);
 
 app.use(express.json());
 app.use('/api/donuts',donut_router)
