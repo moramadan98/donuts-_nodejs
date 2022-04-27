@@ -15,6 +15,15 @@ const getDonutById = async (req,res)=>{
     res.send(donut);
 };
 
+const getDonutByPrice = async (req,res)=>{
+    const donut = await Donut.find({price : {  $lte:req.params.price }})
+    .limit(10);
+    if(!donut) return res.status(404).send("Not Found");
+    res.send(donut);
+};
+
 module.exports={
     getAllDonuts,
-    getDonutById,}
+    getDonutById,
+    getDonutByPrice,
+}
