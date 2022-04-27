@@ -22,8 +22,16 @@ const getDonutByPrice = async (req,res)=>{
     res.send(donut);
 };
 
+const deleteUnavaliableDonut = async (req,res)=>{
+    const donut = await Donut.deleteMany( {isAvaliable:false});
+  if(!donut) return res.status(404).send("Not Found");
+  res.send("DELETED");
+};
+
 module.exports={
     getAllDonuts,
     getDonutById,
     getDonutByPrice,
+    deleteUnavaliableDonut,
+    
 }
