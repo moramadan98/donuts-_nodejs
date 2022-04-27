@@ -7,7 +7,8 @@ router.get('/',Donut_controller.getAllDonuts);
 router.get('/:id',Donut_controller.getDonutById);
 router.get('/get/:price',Donut_controller.getDonutByPrice);
 router.delete('/delete/unavaliable',Donut_controller.deleteUnavaliableDonut);
-
+router.post('/',Donut_controller.addNewDonut);
+router.delete('/:id',Donut_controller.deleteDonutByID);
 
 
 
