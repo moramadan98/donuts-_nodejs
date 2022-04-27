@@ -51,6 +51,36 @@ const deleteDonutByID = async (req,res)=>{
     res.send("DELETED");
 };
 
+
+const buyDonut = async (req,res)=>{
+    const donut = await Donut.findById(req.params.id);
+    if(!donut) return;
+    donut.quantity -= 1 ;
+    donut.isAvaliable = true ? donut.quantity >0 : false ; 
+    
+  if(!donut) return res.status(404).send("Not Found");
+
+
+  const result = await donut.save();
+    res.send(result);
+};
+
+
+const editDonut = async (req,res)=>{
+    const donut = await Donut.findByIdAndUpdate(req.params.id , {$set:{name: req.body.name ,
+        isAvaliable:req.body.isAvaliable,
+        price: req.body.price,
+        flavors: req.body.flavors,
+        quantity:req.body.quantity  ,
+        size: req.body.size}},
+        {new:true})
+
+
+    if(!donut) return res.status(404).send("Not Found");
+    const result = await donut.save();
+    res.send(result);
+};
+
 module.exports={
     getAllDonuts,
     getDonutById,
@@ -58,5 +88,7 @@ module.exports={
     deleteUnavaliableDonut,
     addNewDonut,
     deleteDonutByID,
+    buyDonut,
+    editDonut
     
 }
